@@ -15,7 +15,7 @@ import {
 
 export function Filters() {
   return (
-    <div className="flex flex-row gap-4">
+    <div className="mb-6 flex flex-row gap-4">
       <Input type="text" placeholder="Pesquisar vagas" />
 
       <Popover>

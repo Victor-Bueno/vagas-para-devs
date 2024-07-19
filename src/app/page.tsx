@@ -1,5 +1,6 @@
 import { Filters } from '@/components/filters';
 import { Header } from '@/components/header';
+import { JobListing } from '@/components/job-listing';
 import { Separator } from '@/components/ui/separator';
 
 export default function Home() {
@@ -22,6 +23,8 @@ export default function Home() {
       </div>
 
       <Filters />
+
+      <JobListing />
     </>
   );
 }
