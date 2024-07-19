@@ -29,7 +29,7 @@ export function JobCard(props: JobCardProps) {
   });
 
   return (
-    <Card className="max-h-72 w-full px-4 py-2 transition-all hover:cursor-pointer hover:brightness-[0.985]">
+    <Card className="max-h-72 w-full px-4 py-2 transition-all hover:cursor-pointer hover:border-primary hover:brightness-[0.97] dark:hover:brightness-110">
       <CardHeader className="flex flex-row items-start justify-between">
         <div className="flex flex-row items-center gap-5">
           <CategoryIcon category={props.category} />

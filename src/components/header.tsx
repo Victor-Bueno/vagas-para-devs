@@ -2,6 +2,7 @@
 
 import { Github, Moon, SquareCode, Sun } from 'lucide-react';
 import Link from 'next/link';
+import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -9,8 +10,15 @@ import { Separator } from '@/components/ui/separator';
 import { CalloutCircle } from './callout-circle';
 
 export function Header() {
+  const { setTheme, theme } = useTheme();
+
   function handleGithubClick() {
     window.open('https://github.com/Victor-Bueno/vagas-para-devs', '_blank');
+  }
+
+  function handleSwitchThemeClick() {
+    if (theme === 'dark') setTheme('light');
+    else setTheme('dark');
   }
 
   return (
@@ -20,11 +28,16 @@ export function Header() {
           href={'/'}
           className="flex flex-row items-center gap-2 font-medium"
         >
-          <SquareCode className="text-primary h-6 w-6" />
+          <SquareCode className="h-6 w-6 text-primary" />
           VagasParaDevs
         </Link>
         <div className="flex flex-row items-center gap-4">
-          <Button variant="outline" size="icon" className="p-0">
+          <Button
+            variant="outline"
+            size="icon"
+            className="p-0"
+            onClick={handleSwitchThemeClick}
+          >
             <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             <span className="sr-only">Alterar tema</span>

@@ -9,11 +9,11 @@ interface CategoryIconProps {
 }
 
 const categoryColors = {
-  frontend: 'bg-cyan-600',
-  backend: 'bg-orange-600',
-  mobile: 'bg-purple-600',
-  qa: 'bg-pink-600',
-  data: 'bg-lime-600',
+  frontend: 'bg-cyan-600 dark:bg-cyan-500',
+  backend: 'bg-orange-600 dark:bg-orange-500',
+  mobile: 'bg-purple-600 dark:bg-purple-500',
+  qa: 'bg-pink-600 dark:bg-pink-500',
+  data: 'bg-lime-600 dark:bg-lime-500',
 };
 
 export function CategoryIcon({ category }: CategoryIconProps) {

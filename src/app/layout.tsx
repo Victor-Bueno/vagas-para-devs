@@ -2,6 +2,7 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
 import { ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
@@ -26,11 +27,18 @@ export default function RootLayout({
     <html lang="pt-br">
       <body
         className={cn(
-          'bg-background flex min-h-screen justify-center font-sans antialiased',
+          'flex min-h-screen justify-center bg-background font-sans antialiased',
           poppins.variable,
         )}
       >
-        <div className="h-full w-full max-w-5xl px-4">{children}</div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="h-full w-full max-w-5xl px-4">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
   );
