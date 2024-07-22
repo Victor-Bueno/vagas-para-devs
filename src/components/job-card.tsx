@@ -8,7 +8,8 @@ import { CategoryIcon } from './category-icon';
 import { Badge } from './ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
-interface JobCardProps {
+export interface Job {
+  id: string;
   category: 'frontend' | 'backend' | 'mobile' | 'qa' | 'data';
   title: string;
   labels: string[];
@@ -17,13 +18,17 @@ interface JobCardProps {
   description: string;
 }
 
-export function JobCard(props: JobCardProps) {
-  const labelsSize = props.labels.length;
-  const filteredLabels = props.labels
+interface JobCardProps {
+  job: Job;
+}
+
+export function JobCard({ job }: JobCardProps) {
+  const labelsSize = job.labels.length;
+  const filteredLabels = job.labels
     .slice(0, Math.min(labelsSize, Constants.LABEL_LIMIT))
     .toSorted();
 
-  const timeDiff = formatDistanceToNow(props.date, {
+  const timeDiff = formatDistanceToNow(job.date, {
     addSuffix: true,
     locale: ptBR,
   });
@@ -32,9 +37,9 @@ export function JobCard(props: JobCardProps) {
     <Card className="max-h-72 w-full px-4 py-2 transition-all hover:cursor-pointer hover:border-primary hover:brightness-[0.97] dark:hover:brightness-110">
       <CardHeader className="flex flex-row items-start justify-between">
         <div className="flex flex-row items-center gap-5">
-          <CategoryIcon category={props.category} />
+          <CategoryIcon category={job.category} />
           <div>
-            <CardTitle className="w-fit font-semibold">{props.title}</CardTitle>
+            <CardTitle className="w-fit font-semibold">{job.title}</CardTitle>
             <div className="mt-2 flex flex-row space-x-2">
               {filteredLabels.map((label) => (
                 <Badge key={label} variant="secondary">
@@ -56,14 +61,14 @@ export function JobCard(props: JobCardProps) {
             </span>
             <div className="h-1 w-1 rounded-full bg-muted-foreground" />
             <span className="flex flex-row items-center gap-1">
-              <MessageCircle className="h-4 w-4" /> {props.comments}
+              <MessageCircle className="h-4 w-4" /> {job.comments}
             </span>
           </div>
         </div>
       </CardHeader>
       <CardContent>
         <p className="line-clamp-6 w-full text-sm text-muted-foreground">
-          {props.description}
+          {job.description}
         </p>
       </CardContent>
     </Card>

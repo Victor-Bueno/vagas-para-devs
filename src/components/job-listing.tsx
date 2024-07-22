@@ -1,82 +1,29 @@
-import { JobCard } from './job-card';
+import { PackageOpen } from 'lucide-react';
 
-export function JobListing() {
+import { Job, JobCard } from './job-card';
+
+interface JobListingProps {
+  jobs: Job[];
+}
+
+export function JobListing({ jobs }: JobListingProps) {
   return (
-    <div className="flex flex-col space-y-4">
-      <JobCard
-        category="frontend"
-        title="Front-end Developer na Empresa X"
-        labels={['NextJS', 'React', 'JavaScript', 'CLT', 'Híbrido', 'Pleno']}
-        comments={7}
-        date={new Date('2024-07-16')}
-        description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      />
+    <div className="mb-16 flex flex-col space-y-4">
+      {jobs.map((job) => (
+        <JobCard key={job.id} job={job} />
+      ))}
 
-      <JobCard
-        category="backend"
-        title="Back-end Developer na Empresa X"
-        labels={['NextJS', 'React', 'JavaScript', 'CLT', 'Híbrido', 'Pleno']}
-        comments={7}
-        date={new Date('2024-07-16')}
-        description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      />
-
-      <JobCard
-        category="mobile"
-        title="Mobile Developer na Empresa X"
-        labels={['NextJS', 'React', 'JavaScript', 'CLT', 'Híbrido', 'Pleno']}
-        comments={7}
-        date={new Date('2024-07-16')}
-        description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      />
-
-      <JobCard
-        category="qa"
-        title="QA na Empresa X"
-        labels={['NextJS', 'React', 'JavaScript', 'CLT', 'Híbrido', 'Pleno']}
-        comments={7}
-        date={new Date('2024-07-16')}
-        description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      />
-
-      <JobCard
-        category="data"
-        title="Data Analytics Developer na Empresa X"
-        labels={['NextJS', 'React', 'JavaScript', 'CLT', 'Híbrido', 'Pleno']}
-        comments={7}
-        date={new Date('2024-07-16')}
-        description="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      />
+      {jobs.length === 0 && (
+        <div className="mt-6 flex w-full flex-col items-center justify-center gap-2">
+          <PackageOpen
+            strokeWidth={1}
+            className="h-12 w-12 text-muted-foreground"
+          />
+          <p className="text-sm text-muted-foreground">
+            Nenhuma vaga encontrada
+          </p>
+        </div>
+      )}
     </div>
   );
 }

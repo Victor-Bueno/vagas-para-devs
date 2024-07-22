@@ -20,23 +20,35 @@ export function CategoryIcon({ category }: CategoryIconProps) {
   return (
     <div className={cn('rounded-md p-3', categoryColors[category])}>
       {category === 'frontend' && (
-        <Brush className="h-10 w-10 text-primary-foreground" />
+        <Brush
+          strokeWidth={1.5}
+          className="h-10 w-10 text-primary-foreground"
+        />
       )}
 
       {category === 'backend' && (
-        <Server className="h-10 w-10 text-primary-foreground" />
+        <Server
+          strokeWidth={1.5}
+          className="h-10 w-10 text-primary-foreground"
+        />
       )}
 
       {category === 'mobile' && (
-        <Smartphone className="h-10 w-10 text-primary-foreground" />
+        <Smartphone
+          strokeWidth={1.5}
+          className="h-10 w-10 text-primary-foreground"
+        />
       )}
 
       {category === 'qa' && (
-        <Bug className="h-10 w-10 text-primary-foreground" />
+        <Bug strokeWidth={1.5} className="h-10 w-10 text-primary-foreground" />
       )}
 
       {category === 'data' && (
-        <Database className="h-10 w-10 text-primary-foreground" />
+        <Database
+          strokeWidth={1.5}
+          className="h-10 w-10 text-primary-foreground"
+        />
       )}
     </div>
   );
