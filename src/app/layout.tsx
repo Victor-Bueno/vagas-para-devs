@@ -5,6 +5,8 @@ import { Poppins } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 import { ReactNode } from 'react';
 
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 import { cn } from '@/lib/utils';
 
 const poppins = Poppins({
@@ -37,7 +39,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="h-full w-full max-w-5xl px-4">{children}</div>
+          <div className="h-full w-full max-w-5xl px-4">
+            <Header />
+            {children}
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>

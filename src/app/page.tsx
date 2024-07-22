@@ -1,5 +1,4 @@
 import { Filters } from '@/components/filters';
-import { Header } from '@/components/header';
 import { Job } from '@/components/job-card';
 import { JobListing } from '@/components/job-listing';
 import { Separator } from '@/components/ui/separator';
@@ -73,8 +72,6 @@ const mockJobs: Job[] = [
 export default function Home() {
   return (
     <>
-      <Header />
-
       <div className="my-24 flex w-full justify-center">
         <div className="flex max-w-2xl flex-col items-center text-center">
           <h1 className="text-4xl font-semibold">
