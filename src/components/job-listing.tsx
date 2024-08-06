@@ -1,6 +1,8 @@
 import { PackageOpen } from 'lucide-react';
 
-import { Job, JobCard } from './job-card';
+import { Job } from '@/data/types/job';
+
+import { JobCard } from './job-card';
 
 interface JobListingProps {
   jobs: Job[];
@@ -10,7 +12,15 @@ export function JobListing({ jobs }: JobListingProps) {
   return (
     <div className="mb-16 flex flex-col space-y-4">
       {jobs.map((job) => (
-        <JobCard key={job.id} job={job} />
+        <JobCard
+          key={job.id}
+          category={'frontend'}
+          title={job.title}
+          labels={job.labels.map((label) => label.text)}
+          date={new Date(job.createdAt)}
+          comments={job.comments}
+          description={job.body}
+        />
       ))}
 
       {jobs.length === 0 && (

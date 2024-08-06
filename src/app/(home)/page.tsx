@@ -1,75 +1,23 @@
 import { Filters } from '@/components/filters';
-import { Job } from '@/components/job-card';
 import { JobListing } from '@/components/job-listing';
 import { Separator } from '@/components/ui/separator';
+import { api } from '@/data/api';
 
-const mockJobs: Job[] = [
-  {
-    id: '1',
-    category: 'frontend',
-    title: 'Front-end Developer na Empresa X',
-    labels: ['NextJS', 'React', 'JavaScript', 'CLT', 'Híbrido', 'Pleno'],
-    comments: 7,
-    date: new Date('2024-07-16'),
-    description: `lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-  },
-  {
-    id: '2',
-    category: 'backend',
-    title: 'Back-end Developer na Empresa X',
-    labels: ['NodeJS', 'JavaScript', 'PJ', 'Senior'],
-    comments: 0,
-    date: new Date('2024-07-16'),
-    description: `lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-  },
-  {
-    id: '3',
-    category: 'mobile',
-    title: 'Mobile Developer na Empresa X',
-    labels: ['Android', 'Java', 'Kotlin', 'CLT', 'Pleno'],
-    comments: 0,
-    date: new Date('2024-07-17'),
-    description: `lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`,
-  },
-  {
-    id: '4',
-    category: 'qa',
-    title: 'QA na Empresa X',
-    labels: ['Testes Automatizados', 'Cypress', 'Selenium', 'CLT'],
-    comments: 7,
-    date: new Date('2024-07-12'),
-    description: `lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`,
-  },
-  {
-    id: '5',
-    category: 'data',
-    title: 'Data Engineer na Empresa X',
-    labels: ['SQL', 'Python', 'ETL', 'CLT', 'Senior', 'Big Data', 'Hadoop'],
-    comments: 7,
-    date: new Date('2024-06-16'),
-    description: `lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`,
-  },
-];
+async function getJobs() {
+  const response = await api('/jobs', {
+    next: {
+      revalidate: 60 * 60, // 1 hour
+    },
+  });
 
-export default function Home() {
+  const jobs = await response.json();
+
+  return jobs;
+}
+
+export default async function Home() {
+  const jobs = await getJobs();
+
   return (
     <>
       <div className="my-24 flex w-full justify-center">
@@ -88,7 +36,7 @@ export default function Home() {
 
       <Filters />
 
-      <JobListing jobs={mockJobs} />
+      <JobListing jobs={jobs} />
     </>
   );
 }

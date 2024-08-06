@@ -53,5 +53,8 @@
       "version": "detect"
     },
     "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"] }
+  },
+  "globals": {
+    "RequestInit": true
   }
 }
