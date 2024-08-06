@@ -1,3 +1,10 @@
+import { Category } from './job';
+
+export interface Repository {
+  repo: string;
+  category: Category;
+}
+
 export interface GithubIssue {
   url: string;
   repository_url: string;

@@ -1,29 +1,26 @@
 import { NextResponse } from 'next/server';
 
-import { GithubIssue } from '@/data/types/githubIssue';
-import { Job } from '@/data/types/job';
+import { GithubIssue } from '@/data/types/github';
+import { Category, Job } from '@/data/types/job';
+import { REPOSITORIES } from '@/utils/constants';
+import { convertGithubIssueIntoJob } from '@/utils/githubAPIUtils';
 
-export async function GET() {
-  const response = await fetch(
-    'https://api.github.com/repos/frontendbr/vagas/issues',
-  );
+async function getJobsFromRepo(repo: string, category: Category) {
+  const response = await fetch(`https://api.github.com/repos/${repo}/issues`);
 
   const responseAsJson = await response.json();
-  const jobs: Job[] = responseAsJson.map((job: GithubIssue) => ({
-    id: job.id,
-    title: job.title,
-    description: job.body,
-    url: job.html_url,
-    createdAt: job.created_at,
-    userName: job.user.login,
-    labels: job.labels.map((label) => ({
-      id: label.id,
-      text: label.name,
-      color: label.color,
-    })),
-    comments: job.comments,
-    body: job.body,
-  }));
+  const jobs: Job[] = responseAsJson.map((issue: GithubIssue) =>
+    convertGithubIssueIntoJob(issue, category),
+  );
 
-  return NextResponse.json(jobs);
+  return jobs;
+}
+
+export async function GET() {
+  const jobs = await Promise.all(
+    REPOSITORIES.map((item) => getJobsFromRepo(item.repo, item.category)),
+  );
+  const allJobs = jobs.flat();
+
+  return NextResponse.json(allJobs);
 }

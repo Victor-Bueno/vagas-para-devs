@@ -2,6 +2,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Clock, MessageCircle } from 'lucide-react';
 
+import { Category } from '@/data/types/job';
 import { Constants } from '@/utils/constants';
 
 import { CategoryIcon } from './category-icon';
@@ -9,7 +10,7 @@ import { Badge } from './ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 interface JobCardProps {
-  category: 'frontend' | 'backend' | 'mobile' | 'qa' | 'data';
+  category: Category;
   title: string;
   labels: string[];
   date: Date;

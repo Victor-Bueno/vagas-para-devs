@@ -14,7 +14,7 @@ export function JobListing({ jobs }: JobListingProps) {
       {jobs.map((job) => (
         <JobCard
           key={job.id}
-          category={'frontend'}
+          category={job.category}
           title={job.title}
           labels={job.labels.map((label) => label.text)}
           date={new Date(job.createdAt)}
