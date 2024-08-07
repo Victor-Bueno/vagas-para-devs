@@ -1,5 +1,7 @@
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 import { CategoryIcon } from '@/components/category-icon';
 import { JobCarousel } from '@/components/job-carousel';
@@ -43,7 +45,9 @@ export default async function JobPage({
             <CategoryIcon category={job.category} />
             <h1 className="text-3xl font-semibold">{job.title}</h1>
           </div>
-          <span className="mt-4 text-muted-foreground">{job.body}</span>
+          <article className="prose dark:prose-invert mt-4 rounded-md bg-muted px-6 py-4 text-muted-foreground">
+            <Markdown remarkPlugins={[remarkGfm]}>{job.body}</Markdown>
+          </article>
         </div>
         <aside className="col-span-1">
           <Card className="sticky top-6">
