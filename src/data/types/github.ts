@@ -1,7 +1,8 @@
 import { Category } from './job';
 
 export interface Repository {
-  repo: string;
+  owner: string;
+  name: string;
   category: Category;
 }
 

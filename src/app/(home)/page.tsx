@@ -2,6 +2,7 @@ import { Filters } from '@/components/filters';
 import { JobListing } from '@/components/job-listing';
 import { Separator } from '@/components/ui/separator';
 import { api } from '@/data/api';
+import { Job } from '@/data/types/job';
 
 async function getJobs() {
   const response = await api('/jobs', {
@@ -16,7 +17,7 @@ async function getJobs() {
 }
 
 export default async function Home() {
-  const jobs = await getJobs();
+  const jobs: Job[] = await getJobs();
 
   return (
     <>

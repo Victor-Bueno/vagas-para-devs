@@ -11,28 +11,38 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { api } from '@/data/api';
+import { Job } from '@/data/types/job';
 
-export default function JobPage() {
+async function getJob(owner: string, repo: string, id: string) {
+  const response = await api(`/jobs/${owner}/${repo}/${id}`, {
+    next: {
+      revalidate: 60 * 60 * 5, // 5 hours
+    },
+  });
+
+  const job = await response.json();
+
+  return job;
+}
+
+export default async function JobPage({
+  params,
+}: {
+  params: { data: string[] };
+}) {
+  const [owner, repo, id] = params.data;
+  const job: Job = await getJob(owner, repo, id);
+
   return (
     <>
       <div className="grid grid-cols-3 gap-8 pt-16">
         <div className="col-span-2">
           <div className="flex flex-row items-center gap-4">
             <CategoryIcon category="frontend" />
-            <h1 className="text-3xl font-semibold">Frontend Developer</h1>
+            <h1 className="text-3xl font-semibold">{job.title}</h1>
           </div>
-          <p className="mt-4 text-muted-foreground">
-            {Array.from({ length: 5 }).map(
-              () =>
-                `lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-            )}
-          </p>
+          <p className="mt-4 text-muted-foreground">{job.body}</p>
         </div>
         <aside className="col-span-1">
           <Card className="sticky top-6">
@@ -41,8 +51,8 @@ export default function JobPage() {
             </CardHeader>
             <CardContent>
               <CardDescription className="flex flex-col">
-                <span>Repositório: FrontendBr</span>
-                <span>Comentários: 7</span>
+                <span>Repositório: {job.repo.owner + '/' + job.repo.name}</span>
+                <span>Comentários: {job.comments}</span>
                 <span>Postado há: 2 dias atrás</span>
               </CardDescription>
               <Button className="mt-4 w-full">
@@ -55,9 +65,9 @@ export default function JobPage() {
 
       <h2 className="mt-6 text-lg font-semibold">Tópicos:</h2>
       <div className="mt-4 flex flex-row space-x-2">
-        {Array.from({ length: 5 }).map((_, index) => (
+        {job.labels.map((label, index) => (
           <Badge key={index} variant="secondary">
-            <span className="text-muted-foreground">TEST</span>
+            <span className="text-muted-foreground">{label.text}</span>
           </Badge>
         ))}
       </div>

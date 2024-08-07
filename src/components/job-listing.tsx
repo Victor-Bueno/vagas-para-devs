@@ -20,6 +20,7 @@ export function JobListing({ jobs }: JobListingProps) {
           date={new Date(job.createdAt)}
           comments={job.comments}
           description={job.body}
+          link={`/job/${job.repo.owner}/${job.repo.name}/${job.issueNumber}`}
         />
       ))}
 

@@ -9,6 +9,7 @@ export type Category =
 export interface Job {
   url: string;
   id: number;
+  issueNumber: number;
   title: string;
   category: Category;
   userName: string;
@@ -20,4 +21,8 @@ export interface Job {
   comments: number;
   createdAt: string;
   body: string;
+  repo: {
+    owner: string;
+    name: string;
+  };
 }

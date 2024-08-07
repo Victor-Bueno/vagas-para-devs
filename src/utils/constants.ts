@@ -6,32 +6,39 @@ export enum Constants {
 
 export const REPOSITORIES: Repository[] = [
   {
-    repo: 'frontendbr/vagas',
+    owner: 'frontendbr',
+    name: 'vagas',
     category: 'frontend',
   },
   {
-    repo: 'backend-br/vagas',
+    owner: 'backend-br',
+    name: 'vagas',
     category: 'backend',
   },
   {
-    repo: 'qa-brasil/vagas',
+    owner: 'qa-brasil',
+    name: 'vagas',
     category: 'qa',
   },
 
   {
-    repo: 'androiddevbr/vagas',
+    owner: 'androiddevbr',
+    name: 'vagas',
     category: 'mobile',
   },
   {
-    repo: 'CocoaHeadsBrasil/vagas',
+    owner: 'CocoaHeadsBrasil',
+    name: 'vagas',
     category: 'mobile',
   },
   {
-    repo: 'flutterbr/vagas',
+    owner: 'flutterbr',
+    name: 'vagas',
     category: 'mobile',
   },
   {
-    repo: 'react-brasil/vagas',
+    owner: 'react-brasil',
+    name: 'vagas',
     category: 'mobile',
   },
 ];

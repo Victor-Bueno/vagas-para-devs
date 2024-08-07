@@ -1,15 +1,17 @@
 import { GithubIssue } from '@/data/types/github';
-import { Category } from '@/data/types/job';
+import { Category, Job } from '@/data/types/job';
 
 export function convertGithubIssueIntoJob(
   issue: GithubIssue,
   category: Category,
-) {
+  repoOwner: string,
+  repoName: string,
+): Job {
   return {
     id: issue.id,
+    issueNumber: issue.number,
     title: issue.title,
     category,
-    description: issue.body,
     url: issue.html_url,
     createdAt: issue.created_at,
     userName: issue.user.login,
@@ -20,5 +22,9 @@ export function convertGithubIssueIntoJob(
     })),
     comments: issue.comments,
     body: issue.body,
+    repo: {
+      owner: repoOwner,
+      name: repoName,
+    },
   };
 }
