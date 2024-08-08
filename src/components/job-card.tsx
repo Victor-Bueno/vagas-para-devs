@@ -35,10 +35,10 @@ export function JobCard(props: JobCardProps) {
     <Link href={props.link}>
       <Card className="max-h-72 w-full px-4 py-2 transition-all hover:cursor-pointer hover:border-primary">
         <CardHeader className="flex flex-row items-start justify-between">
-          <div className="flex flex-row items-center gap-5">
+          <div className="flex flex-row items-start gap-5">
             <CategoryIcon category={props.category} />
             <div>
-              <CardTitle className="w-fit font-semibold">
+              <CardTitle className="line-clamp-2 w-fit break-words font-semibold leading-7">
                 {props.title}
               </CardTitle>
               <div className="mt-2 flex flex-row space-x-2">
@@ -55,10 +55,11 @@ export function JobCard(props: JobCardProps) {
               </div>
             </div>
           </div>
-          <div>
+          <div className="pl-2">
             <div className="flex flex-row items-center gap-2 text-sm text-muted-foreground">
-              <span className="flex flex-row items-center gap-1">
-                <Clock className="h-4 w-4" /> {timeDiff}
+              <span className="flex flex-row items-center gap-1 whitespace-nowrap">
+                <Clock className="h-4 w-4" />
+                {timeDiff}
               </span>
               <div className="h-1 w-1 rounded-full bg-muted-foreground" />
               <span className="flex flex-row items-center gap-1">

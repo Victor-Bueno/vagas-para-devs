@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import Markdown from 'react-markdown';
@@ -37,6 +39,10 @@ export default async function JobPage({
   const [owner, repo, id] = params.data;
   const job: Job = await getJob(owner, repo, id);
 
+  const timeDiff = formatDistanceToNow(job.createdAt, {
+    locale: ptBR,
+  });
+
   return (
     <>
       <div className="grid grid-cols-3 gap-8 pt-16">
@@ -45,7 +51,7 @@ export default async function JobPage({
             <CategoryIcon category={job.category} />
             <h1 className="text-3xl font-semibold">{job.title}</h1>
           </div>
-          <article className="prose dark:prose-invert mt-4 rounded-md bg-muted px-6 py-4 text-muted-foreground">
+          <article className="prose mt-4 rounded-md bg-muted px-6 py-4 text-muted-foreground dark:prose-invert">
             <Markdown remarkPlugins={[remarkGfm]}>{job.body}</Markdown>
           </article>
         </div>
@@ -58,7 +64,7 @@ export default async function JobPage({
               <CardDescription className="flex flex-col">
                 <span>Repositório: {job.repo.owner + '/' + job.repo.name}</span>
                 <span>Comentários: {job.comments}</span>
-                <span>Postado há: 2 dias atrás</span>
+                <span>Postado há: {timeDiff} atrás</span>
               </CardDescription>
               <Link href={job.githubUrl} target="_blank">
                 <Button className="mt-4 w-full">

@@ -26,6 +26,7 @@ async function getJobsFromRepo(repo: Repository) {
 export async function GET() {
   const jobs = await Promise.all(REPOSITORIES.map(getJobsFromRepo));
   const allJobs = jobs.flat();
+  allJobs.sort(() => Math.random() - 0.5);
 
   return NextResponse.json(allJobs);
 }

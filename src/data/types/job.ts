@@ -21,6 +21,7 @@ export interface Job {
   comments: number;
   createdAt: string;
   body: string;
+  githubUrl: string;
   repo: {
     owner: string;
     name: string;

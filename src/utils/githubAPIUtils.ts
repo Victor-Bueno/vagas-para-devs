@@ -1,6 +1,10 @@
 import { GithubIssue } from '@/data/types/github';
 import { Category, Job } from '@/data/types/job';
 
+function removeComments(input: string): string {
+  return input.replace(/<!--.*?-->/g, '');
+}
+
 export function convertGithubIssueIntoJob(
   issue: GithubIssue,
   category: Category,
@@ -21,7 +25,8 @@ export function convertGithubIssueIntoJob(
       color: label.color,
     })),
     comments: issue.comments,
-    body: issue.body,
+    body: removeComments(issue.body),
+    githubUrl: issue.html_url,
     repo: {
       owner: repoOwner,
       name: repoName,
