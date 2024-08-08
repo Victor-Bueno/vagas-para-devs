@@ -1,8 +1,24 @@
 import { GithubIssue } from '@/data/types/github';
 import { Category, Job } from '@/data/types/job';
 
+function removeLabelsSection(input: string): string {
+  const labelsSectionInit = input.indexOf('## Labels');
+  const labelsSectionEnd = input.indexOf('\n## ', labelsSectionInit + 1);
+
+  const textBeforeLabels = input.substring(0, labelsSectionInit);
+
+  return labelsSectionEnd === -1
+    ? textBeforeLabels
+    : textBeforeLabels + input.substring(labelsSectionEnd);
+}
+
 function removeComments(input: string): string {
-  return input.replace(/<!--.*?-->/g, '');
+  return input.replace(/(?=<!--)([\s\S]*?)-->/g, '');
+}
+
+function formatBody(input: string): string {
+  const noCommentsInput = removeComments(input);
+  return removeLabelsSection(noCommentsInput);
 }
 
 export function convertGithubIssueIntoJob(
@@ -25,7 +41,7 @@ export function convertGithubIssueIntoJob(
       color: label.color,
     })),
     comments: issue.comments,
-    body: removeComments(issue.body),
+    body: formatBody(issue.body),
     githubUrl: issue.html_url,
     repo: {
       owner: repoOwner,
