@@ -2,6 +2,7 @@ import { Repository } from '@/data/types/github';
 
 export enum Constants {
   LABEL_LIMIT = 5,
+  JOBS_PER_PAGE = 12,
 }
 
 export const REPOSITORIES: Repository[] = [

@@ -4,8 +4,8 @@ import { Separator } from '@/components/ui/separator';
 import { api } from '@/data/api';
 import { Job } from '@/data/types/job';
 
-async function getJobs() {
-  const response = await api('/jobs', {
+async function getJobs(page: number) {
+  const response = await api(`/jobs?page=${page}`, {
     next: {
       revalidate: 60 * 60, // 1 hour
     },
@@ -16,8 +16,16 @@ async function getJobs() {
   return jobs;
 }
 
-export default async function Home() {
-  const jobs: Job[] = await getJobs();
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: {
+    page?: string;
+  };
+}) {
+  const currentPage = Number(searchParams?.page) || 1;
+  const { jobs, lastPage }: { jobs: Job[]; lastPage: number } =
+    await getJobs(currentPage);
 
   return (
     <>
@@ -37,7 +45,7 @@ export default async function Home() {
 
       <Filters />
 
-      <JobListing jobs={jobs} />
+      <JobListing jobs={jobs} totalPages={lastPage} />
     </>
   );
 }
