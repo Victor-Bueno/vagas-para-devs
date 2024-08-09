@@ -3,6 +3,10 @@ import { Category, Job } from '@/data/types/job';
 
 function removeLabelsSection(input: string): string {
   const labelsSectionInit = input.indexOf('## Labels');
+  if (labelsSectionInit === -1) {
+    return input;
+  }
+
   const labelsSectionEnd = input.indexOf('\n## ', labelsSectionInit + 1);
 
   const textBeforeLabels = input.substring(0, labelsSectionInit);
