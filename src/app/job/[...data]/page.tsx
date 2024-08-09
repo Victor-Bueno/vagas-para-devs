@@ -42,11 +42,11 @@ export default async function JobPage({
     <>
       <div className="grid grid-cols-3 gap-8 pt-16">
         <div className="col-span-2">
-          <div className="flex flex-row items-start gap-4">
+          <div className="flex flex-row items-center gap-4">
             <CategoryIcon category={job.category} />
             <h1 className="text-3xl font-semibold">{job.title}</h1>
           </div>
-          <article className="prose mt-4 rounded-md bg-muted px-6 py-4 text-muted-foreground dark:prose-invert">
+          <article className="prose mt-4 break-words rounded-md bg-muted px-6 py-4 text-muted-foreground dark:prose-invert">
             <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
               {job.body}
             </Markdown>
