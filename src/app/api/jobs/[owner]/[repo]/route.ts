@@ -9,9 +9,12 @@ async function fetchJobsFromRepo(
   repo: Repository,
   page: number,
   perPage: number,
+  sortMethod: string,
+  sortDirection: string,
 ) {
+  console.log(sortDirection);
   const response = await fetch(
-    `https://api.github.com/repos/${repo.owner}/${repo.name}/issues?state=open&per_page=${perPage}&page=${page}`,
+    `https://api.github.com/repos/${repo.owner}/${repo.name}/issues?state=open&per_page=${perPage}&page=${page}&sort=${sortMethod}&direction=${sortDirection}`,
   );
 
   const responseAsJson = await response.json();
@@ -37,6 +40,7 @@ export async function GET(
 ) {
   const url = new URL(request.url);
   const page = parseInt(url.searchParams.get('page') || '1', 10);
+  const sort = url.searchParams.get('sort') || Constants.DEFAULT_SORT;
 
   const repository = REPOSITORIES.find(
     (item: Repository) =>
@@ -50,6 +54,8 @@ export async function GET(
     repository,
     page,
     Constants.JOBS_PER_PAGE,
+    sort.split('_')[0],
+    sort.split('_')[1],
   );
 
   return NextResponse.json(fetchReponse);

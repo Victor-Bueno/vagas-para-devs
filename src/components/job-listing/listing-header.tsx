@@ -1,14 +1,5 @@
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-
 import { JobBreadcrumb } from '../job-breadcrumb';
+import { SortJobsSelect } from './sort-jobs-select';
 
 interface ListingHeaderProps {
   currentPage: string;
@@ -23,20 +14,7 @@ export function ListingHeader(props: ListingHeaderProps) {
         previousPages={props.previousPages}
       />
 
-      <Select defaultValue="relevance">
-        <SelectTrigger className="w-48">
-          <SelectValue placeholder="Ordenar" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Ordenar por</SelectLabel>
-            <SelectItem value="relevance">Relevância</SelectItem>
-            <SelectItem value="recent">Mais recente</SelectItem>
-            <SelectItem value="oldest">Mais antigo</SelectItem>
-            <SelectItem value="comments">Mais comentários</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+      <SortJobsSelect />
     </div>
   );
 }
