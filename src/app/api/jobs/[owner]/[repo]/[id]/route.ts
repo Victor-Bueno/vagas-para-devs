@@ -6,21 +6,25 @@ import { convertGithubIssueIntoJob } from '@/utils/githubAPIUtils';
 
 export async function GET(
   _: Request,
-  { params }: { params: { data: string[] } },
+  { params }: { params: { owner: string; repo: string; id: string } },
 ) {
-  const [owner, repo, id] = params.data;
-
   const response = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/issues/${id}`,
+    `https://api.github.com/repos/${params.owner}/${params.repo}/issues/${params.id}`,
   );
   const responseAsJson: GithubIssue = await response.json();
 
   const category =
     REPOSITORIES.find(
-      (item: Repository) => item.owner === owner && item.name === repo,
+      (item: Repository) =>
+        item.owner === params.owner && item.name === params.repo,
     )?.category ?? 'other';
 
   return NextResponse.json(
-    convertGithubIssueIntoJob(responseAsJson, category, owner, repo),
+    convertGithubIssueIntoJob(
+      responseAsJson,
+      category,
+      params.owner,
+      params.repo,
+    ),
   );
 }
