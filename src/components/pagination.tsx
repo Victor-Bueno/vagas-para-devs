@@ -25,6 +25,7 @@ export function Pagination({ totalPages }: PaginationProps) {
   return (
     <div className="mt-8 flex items-center justify-center space-x-4">
       <Button
+        className="text-primary"
         variant={'outline'}
         size={'icon'}
         disabled={currentPage === 1}
@@ -34,6 +35,7 @@ export function Pagination({ totalPages }: PaginationProps) {
       </Button>
       <span className="px-4 py-2 text-sm">{`Página ${currentPage} de ${totalPages}`}</span>
       <Button
+        className="text-primary"
         variant={'outline'}
         size={'icon'}
         disabled={currentPage === totalPages}
