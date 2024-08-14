@@ -2,6 +2,23 @@ import * as TailwindColors from 'tailwindcss/colors';
 
 import { Category } from '@/data/types/job';
 
+export const getCategoryName = (category: Category) => {
+  switch (category) {
+    case 'frontend':
+      return 'Frontend';
+    case 'backend':
+      return 'Backend';
+    case 'mobile':
+      return 'Mobile';
+    case 'qa':
+      return 'QA';
+    case 'data':
+      return 'Data Science';
+    default:
+      return 'Outro';
+  }
+};
+
 export const getCategoryColor = (category: Category) => {
   switch (category) {
     case 'frontend':

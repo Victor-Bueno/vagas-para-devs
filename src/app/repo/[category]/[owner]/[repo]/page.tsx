@@ -1,4 +1,3 @@
-import { Filters } from '@/components/filters';
 import { JobListing } from '@/components/job-listing';
 import { api } from '@/data/api';
 import { Job } from '@/data/types/job';
@@ -33,8 +32,6 @@ export default async function RepoJobsPage({
 
   return (
     <div>
-      <Filters />
-
       <JobListing jobs={jobs} totalPages={lastPage} />
     </div>
   );

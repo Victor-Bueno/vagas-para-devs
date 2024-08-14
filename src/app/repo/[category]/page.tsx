@@ -1,8 +1,10 @@
 import { redirect } from 'next/navigation';
 
+import { JobBreadcrumb } from '@/components/job-breadcrumb';
 import { RepoCategoryCard } from '@/components/repo-category-listing/repo-category-card';
 import { Category } from '@/data/types/job';
 import { REPOSITORIES } from '@/utils/constants';
+import { getCategoryName } from '@/utils/styles';
 
 export default function RepoListPage({
   params,
@@ -21,9 +23,14 @@ export default function RepoListPage({
     );
   }
 
+  const typedCategory = params.category as Category;
+
   return (
     <div className="pt-16">
-      <h1 className="text-4xl font-semibold">Repositórios {params.category}</h1>
+      <JobBreadcrumb currentPage={getCategoryName(typedCategory)} />
+      <h1 className="pt-2 text-4xl font-semibold">
+        Repositórios {getCategoryName(typedCategory)}
+      </h1>
       <span className="text-sm text-muted-foreground">
         Escolha um dos repositórios a seguir para conferir suas vagas
         disponíveis
@@ -35,7 +42,7 @@ export default function RepoListPage({
           return (
             <RepoCategoryCard
               key={title}
-              category={params.category as Category}
+              category={typedCategory}
               title={title}
               description={repo.desc}
               href={`/repo/${params.category}/${repo.owner}/${repo.name}`}
