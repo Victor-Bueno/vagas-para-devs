@@ -16,7 +16,9 @@ export default function RepoListPage({
   if (repositories.length === 0) {
     redirect('/404');
   } else if (repositories.length === 1) {
-    redirect(`/repo/${params.category}/${repositories[0].owner}`);
+    redirect(
+      `/repo/${params.category}/${repositories[0].owner}/${repositories[0].name}`,
+    );
   }
 
   return (
@@ -36,7 +38,7 @@ export default function RepoListPage({
               category={params.category as Category}
               title={title}
               description={repo.desc}
-              href={`/repo/${params.category}/${repo.owner}`}
+              href={`/repo/${params.category}/${repo.owner}/${repo.name}`}
             />
           );
         })}
