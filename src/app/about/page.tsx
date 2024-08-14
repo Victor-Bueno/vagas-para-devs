@@ -1,9 +1,12 @@
 import Image from 'next/image';
 
+import { JobBreadcrumb } from '@/components/job-breadcrumb';
+
 export default function About() {
   return (
     <div className="flex flex-row gap-16 pt-16">
       <main className="space-y-2">
+        <JobBreadcrumb currentPage={'Sobre'} />
         <h1 className="text-4xl font-semibold">Sobre o projeto</h1>
         <p className="text-sm text-muted-foreground">
           Coleção de vagas de emprego para desenvolvedores de software reunidas
