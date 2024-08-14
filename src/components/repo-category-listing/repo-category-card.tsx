@@ -20,6 +20,7 @@ interface RepoCategoryCardProps {
   category: Category;
   title: string;
   description: string;
+  href: string;
 }
 
 const backgroundMotion = {
@@ -43,16 +44,12 @@ const textMotion = {
 export function RepoCategoryCard(props: RepoCategoryCardProps) {
   const { push } = useRouter();
 
-  const handleClick = () => {
-    push(`/repo/${props.category}`);
-  };
-
   return (
     <motion.div
       initial="rest"
       whileHover="hover"
       className="cursor-pointer"
-      onClick={() => handleClick()}
+      onClick={() => push(props.href)}
     >
       <Card className="relative flex flex-row overflow-hidden">
         <motion.div

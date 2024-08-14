@@ -4,6 +4,7 @@ export interface Repository {
   owner: string;
   name: string;
   category: Category;
+  desc: string;
 }
 
 export interface GithubIssue {
