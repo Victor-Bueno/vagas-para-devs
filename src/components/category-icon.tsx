@@ -2,25 +2,11 @@ import { Brush, Bug, Database, Server, Smartphone } from 'lucide-react';
 
 import { Category } from '@/data/types/job';
 import { cn } from '@/lib/utils';
+import { getCategoryColor } from '@/utils/styles';
 
 interface CategoryIconProps {
   category: Category;
 }
-
-const getCategoryColor = (category: Category) => {
-  switch (category) {
-    case 'frontend':
-      return 'bg-cyan-600 dark:bg-cyan-500';
-    case 'backend':
-      return 'bg-orange-600 dark:bg-orange-500';
-    case 'mobile':
-      return 'bg-purple-600 dark:bg-purple-500';
-    case 'qa':
-      return 'bg-pink-600 dark:bg-pink-500';
-    case 'data':
-      return 'bg-lime-600 dark:bg-lime-500';
-  }
-};
 
 export function CategoryIcon({ category }: CategoryIconProps) {
   return (
