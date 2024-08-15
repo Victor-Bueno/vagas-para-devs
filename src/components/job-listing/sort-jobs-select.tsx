@@ -32,7 +32,7 @@ export function SortJobsSelect() {
       defaultValue={currentSortState}
       onValueChange={(value) => push(createSortURL(value))}
     >
-      <SelectTrigger className="w-48">
+      <SelectTrigger className="w-full sm:w-48">
         <SelectValue placeholder="Ordenar" />
       </SelectTrigger>
       <SelectContent>

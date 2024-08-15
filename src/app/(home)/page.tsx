@@ -6,7 +6,7 @@ export default async function Home() {
     <>
       <div className="mb-16 mt-24 flex w-full justify-center">
         <div className="flex max-w-2xl flex-col items-center text-center">
-          <h1 className="text-4xl font-semibold">
+          <h1 className="text-2xl font-semibold sm:text-4xl">
             Encontre Vagas de <br /> Emprego para Devs
           </h1>
           <Separator className="my-5 h-1 max-w-48 bg-primary" />

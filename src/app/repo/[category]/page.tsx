@@ -26,9 +26,9 @@ export default function RepoListPage({
   const typedCategory = params.category as Category;
 
   return (
-    <div className="pt-16">
+    <div className="pt-8 sm:pt-16">
       <JobBreadcrumb currentPage={getCategoryName(typedCategory)} />
-      <h1 className="pt-2 text-4xl font-semibold">
+      <h1 className="pt-2 text-2xl font-semibold sm:text-4xl">
         Repositórios {getCategoryName(typedCategory)}
       </h1>
       <span className="text-sm text-muted-foreground">

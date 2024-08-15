@@ -40,20 +40,20 @@ export default async function JobPage({
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-8 pt-16">
-        <div className="col-span-2">
-          <div className="flex flex-row items-center gap-4">
+      <div className="flex flex-col gap-8 pt-8 sm:grid sm:grid-cols-3 sm:pt-16">
+        <div className="sm:col-span-2">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <CategoryIcon category={job.category} />
-            <h1 className="text-3xl font-semibold">{job.title}</h1>
+            <h1 className="text-2xl font-semibold sm:text-3xl">{job.title}</h1>
           </div>
-          <article className="prose mt-4 break-words rounded-md bg-muted px-6 py-4 text-muted-foreground dark:prose-invert">
+          <article className="prose prose-sm mt-4 max-w-full break-words rounded-md bg-muted px-6 py-4 text-muted-foreground dark:prose-invert">
             <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
               {job.body}
             </Markdown>
           </article>
         </div>
-        <aside className="col-span-1">
-          <Card className="sticky top-6">
+        <aside className="sm:col-span-1">
+          <Card className="sm:sticky sm:top-6">
             <CardHeader>
               <CardTitle className="text-xl">Detalhes:</CardTitle>
             </CardHeader>
@@ -88,7 +88,7 @@ export default async function JobPage({
               </div>
               <Link href={job.githubUrl} target="_blank">
                 <Button className="mt-4 w-full">
-                  Candidatar-se <ExternalLink className="ml-2 h-4 w-4" />
+                  Ver no Github <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
             </CardContent>
@@ -97,7 +97,7 @@ export default async function JobPage({
       </div>
 
       <h2 className="mt-6 text-lg font-semibold">Tópicos:</h2>
-      <div className="mt-4 flex flex-row space-x-2">
+      <div className="mt-4 flex flex-row flex-wrap gap-2 gap-y-2">
         {job.labels.map((label, index) => (
           <Badge key={index} variant="secondary">
             <span className="text-muted-foreground">{label.text}</span>

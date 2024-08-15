@@ -23,7 +23,7 @@ export function Pagination({ totalPages }: PaginationProps) {
   };
 
   return (
-    <div className="mt-8 flex items-center justify-center space-x-4">
+    <div className="mt-8 flex flex-row items-center justify-between lg:justify-center">
       <Button
         className="text-primary"
         variant={'outline'}
@@ -33,7 +33,7 @@ export function Pagination({ totalPages }: PaginationProps) {
       >
         <ChevronLeft />
       </Button>
-      <span className="px-4 py-2 text-sm">{`Página ${currentPage} de ${totalPages}`}</span>
+      <span className="px-8 py-2 text-sm">{`Página ${currentPage} de ${totalPages}`}</span>
       <Button
         className="text-primary"
         variant={'outline'}

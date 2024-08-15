@@ -48,6 +48,7 @@ export function RepoCategoryCard(props: RepoCategoryCardProps) {
     <motion.div
       initial="rest"
       whileHover="hover"
+      whileTap="hover"
       className="cursor-pointer"
       onClick={() => push(props.href)}
     >
@@ -61,7 +62,7 @@ export function RepoCategoryCard(props: RepoCategoryCardProps) {
           transition={{ duration: 0.5 }}
         />
         <motion.div
-          className="absolute inset-0 flex items-center justify-between px-12 text-4xl font-bold text-background"
+          className="absolute inset-0 flex items-center justify-between px-12 text-xl font-bold text-background sm:text-4xl"
           variants={textMotion}
           transition={{ duration: 0.5 }}
         >
@@ -71,7 +72,9 @@ export function RepoCategoryCard(props: RepoCategoryCardProps) {
         <div className="flex flex-row">
           <div>
             <CardHeader className="pb-2">
-              <CardTitle>{props.title}</CardTitle>
+              <CardTitle className="text-xl leading-6 sm:text-2xl">
+                {props.title}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription>{props.description}</CardDescription>

@@ -18,7 +18,7 @@ export function GithubButton() {
       onClick={handleGithubClick}
     >
       <Github className="h-4 w-4" />
-      Github
+      <span className="sr-only sm:not-sr-only">Github</span>
       <span className="absolute right-0.5 top-0.5 -translate-y-1/2 translate-x-1/2 transform">
         <CalloutCircle />
       </span>

@@ -16,9 +16,9 @@ import {
 export function JobCarousel() {
   return (
     <Carousel className="mt-4">
-      <CarouselContent>
+      <CarouselContent className="max-w-full">
         {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="basis-1/3">
+          <CarouselItem key={index} className="sm:basis-1/3">
             <Card className="transition-all hover:cursor-pointer hover:border-primary">
               <CardHeader>
                 <CardTitle className="text-xl">Frontend Developer</CardTitle>
@@ -35,8 +35,8 @@ export function JobCarousel() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="hidden sm:inline-flex" />
+      <CarouselNext className="hidden sm:inline-flex" />
     </Carousel>
   );
 }

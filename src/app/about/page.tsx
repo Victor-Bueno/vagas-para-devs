@@ -4,16 +4,16 @@ import { JobBreadcrumb } from '@/components/job-breadcrumb';
 
 export default function About() {
   return (
-    <div className="flex flex-row gap-16 pt-16">
-      <main className="space-y-2">
+    <div className="grid grid-cols-4 gap-16 pt-8 sm:pt-16">
+      <main className="col-span-4 space-y-2 sm:col-span-3">
         <JobBreadcrumb currentPage={'Sobre'} />
-        <h1 className="text-4xl font-semibold">Sobre o projeto</h1>
+        <h1 className="text-2xl font-semibold sm:text-4xl">Sobre o projeto</h1>
         <p className="text-sm text-muted-foreground">
           Coleção de vagas de emprego para desenvolvedores de software reunidas
           de diferentes repositórios abastecidos pela comunidade brasileira.
         </p>
 
-        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold">
+        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold leading-6">
           <span className="inline-block h-2 w-2 bg-primary" />O que é o
           VagasParaDevs?
         </h2>
@@ -25,7 +25,7 @@ export default function About() {
           do GitHub.
         </p>
 
-        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold">
+        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold leading-6">
           <span className="inline-block h-2 w-2 bg-primary" />
           Como funciona?
         </h2>
@@ -35,7 +35,7 @@ export default function About() {
           busca por vagas de emprego.
         </p>
 
-        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold">
+        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold leading-6">
           <span className="inline-block h-2 w-2 bg-primary" />
           Como criar vagas?
         </h2>
@@ -45,7 +45,7 @@ export default function About() {
           README.md.
         </p>
 
-        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold">
+        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold leading-6">
           <span className="inline-block h-2 w-2 bg-primary" />
           Tecnologias e como contribuir?
         </h2>
@@ -55,7 +55,7 @@ export default function About() {
           no GitHub e seguir as instruções.
         </p>
 
-        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold">
+        <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold leading-6">
           <span className="inline-block h-2 w-2 bg-primary" />
           Sobre o Autor
         </h2>
@@ -73,7 +73,7 @@ export default function About() {
       </main>
       <Image
         src="/about_image.jpg"
-        className="object-cover"
+        className="col-span-1 hidden h-full object-cover sm:block"
         quality={100}
         height={700}
         width={200}
