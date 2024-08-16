@@ -7,12 +7,14 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 
 import { CategoryIcon } from '@/components/category-icon';
+import { JobBreadcrumb } from '@/components/job-breadcrumb';
 import { JobCarousel } from '@/components/job-carousel';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { api } from '@/data/api';
 import { Job } from '@/data/types/job';
+import { getCategoryName } from '@/utils/styles';
 
 async function getJob(owner: string, repo: string, id: string) {
   const response = await api(`/jobs/${owner}/${repo}/${id}`, {
@@ -34,13 +36,27 @@ export default async function JobPage({
   const [owner, repo, id] = params.data;
   const job: Job = await getJob(owner, repo, id);
 
+  const repoFullName = job.repo.owner + '/' + job.repo.name;
   const formattedDate = formatDate(job.createdAt, 'dd/MM/yyyy', {
     locale: ptBR,
   });
 
   return (
-    <>
-      <div className="flex flex-col gap-8 pt-8 sm:pt-16 lg:grid lg:grid-cols-3">
+    <div className="pt-8 sm:pt-16">
+      <JobBreadcrumb
+        currentPage={`Vaga ${job.issueNumber}`}
+        previousPages={[
+          {
+            name: getCategoryName(job.category),
+            href: `/repo/${job.category}`,
+          },
+          {
+            name: repoFullName,
+            href: `/repo/${job.category}/${repoFullName}`,
+          },
+        ]}
+      />
+      <div className="mt-1 flex flex-col gap-8 sm:mt-6 lg:grid lg:grid-cols-3">
         <div className="sm:col-span-2">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <CategoryIcon category={job.category} />
@@ -64,15 +80,10 @@ export default async function JobPage({
                   <div className="mx-2 h-px w-full bg-muted" />
                   <Link
                     className="text-nowrap transition-all hover:underline"
-                    href={
-                      'https://github.com/' +
-                      job.repo.owner +
-                      '/' +
-                      job.repo.name
-                    }
+                    href={'https://github.com/' + repoFullName}
                     target="_blank"
                   >
-                    @{job.repo.owner + '/' + job.repo.name}
+                    @{repoFullName}
                   </Link>
                 </div>
                 <div className="flex flex-row items-center justify-between">
@@ -110,6 +121,6 @@ export default async function JobPage({
 
       <h2 className="mt-6 text-lg font-semibold">Vagas similares:</h2>
       <JobCarousel />
-    </>
+    </div>
   );
 }

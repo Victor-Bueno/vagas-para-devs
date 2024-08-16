@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import {
   Breadcrumb,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -15,6 +16,8 @@ interface JobBreadcrumbProps {
 }
 
 export function JobBreadcrumb(props: JobBreadcrumbProps) {
+  const previousSize = props.previousPages?.length || 0;
+
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -27,14 +30,27 @@ export function JobBreadcrumb(props: JobBreadcrumbProps) {
         {props.previousPages &&
           props.previousPages.map((page) => (
             <>
-              <BreadcrumbItem key={page.name}>
+              <BreadcrumbItem
+                key={page.name}
+                className={previousSize > 1 ? 'hidden sm:inline-flex' : ''}
+              >
                 <BreadcrumbLink asChild>
                   <Link href={page.href}>{page.name}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
-              <BreadcrumbSeparator />
+              <BreadcrumbSeparator
+                className={previousSize > 1 ? 'hidden sm:list-item' : ''}
+              />
             </>
           ))}
+
+        <BreadcrumbEllipsis
+          className={previousSize > 1 ? 'flex sm:hidden' : 'hidden'}
+        />
+        <BreadcrumbSeparator
+          className={previousSize > 1 ? 'list-item sm:hidden' : 'hidden'}
+        />
+
         <BreadcrumbItem>
           <BreadcrumbPage>{props.currentPage}</BreadcrumbPage>
         </BreadcrumbItem>
