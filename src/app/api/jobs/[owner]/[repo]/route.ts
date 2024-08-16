@@ -27,11 +27,15 @@ async function fetchJobsFromRepo(
     );
   });
 
-  const lastPage = response.headers
-    .get('link')
-    ?.match(/page=(\d+)>; rel="last"/)?.[1];
+  const linkHeader = response.headers.get('link');
+  const lastLink = linkHeader
+    ?.split(',')
+    .find((link) => link.includes('rel="last"'));
 
-  return { jobs, lastPage: parseInt(lastPage || '1') };
+  const lastPageMatch = lastLink?.match(/(\?|&)page=(\d+)/)?.[0];
+  const lastPage = lastPageMatch?.split('=')[1] || '1';
+
+  return { jobs, lastPage: parseInt(lastPage) };
 }
 
 export async function GET(
