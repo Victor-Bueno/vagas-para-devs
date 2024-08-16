@@ -40,7 +40,7 @@ export default async function JobPage({
 
   return (
     <>
-      <div className="flex flex-col gap-8 pt-8 sm:grid sm:grid-cols-3 sm:pt-16">
+      <div className="flex flex-col gap-8 pt-8 sm:pt-16 lg:grid lg:grid-cols-3">
         <div className="sm:col-span-2">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <CategoryIcon category={job.category} />

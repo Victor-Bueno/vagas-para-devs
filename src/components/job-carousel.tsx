@@ -15,10 +15,13 @@ import {
 
 export function JobCarousel() {
   return (
-    <Carousel className="mt-4">
-      <CarouselContent className="max-w-full">
+    <Carousel className="mt-4 sm:static sm:flex sm:flex-col sm:items-end xl:relative">
+      <CarouselContent className="">
         {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="sm:basis-1/3">
+          <CarouselItem
+            key={index}
+            className="basis-10/12 lg:basis-1/2 xl:basis-1/3"
+          >
             <Card className="transition-all hover:cursor-pointer hover:border-primary">
               <CardHeader>
                 <CardTitle className="text-xl">Frontend Developer</CardTitle>
@@ -35,8 +38,10 @@ export function JobCarousel() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hidden sm:inline-flex" />
-      <CarouselNext className="hidden sm:inline-flex" />
+      <div className="mt-8 flex flex-row gap-5">
+        <CarouselPrevious className="hidden sm:static sm:inline-flex xl:absolute" />
+        <CarouselNext className="hidden sm:static sm:inline-flex xl:absolute" />
+      </div>
     </Carousel>
   );
 }
