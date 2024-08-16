@@ -44,6 +44,10 @@ export async function GET(
 ) {
   const url = new URL(request.url);
   const page = parseInt(url.searchParams.get('page') || '1', 10);
+  const perPage = parseInt(
+    url.searchParams.get('per_page') || String(Constants.JOBS_PER_PAGE),
+    10,
+  );
   const sort = url.searchParams.get('sort') || Constants.DEFAULT_SORT;
 
   const repository = REPOSITORIES.find(
@@ -57,7 +61,7 @@ export async function GET(
   const fetchReponse = await fetchJobsFromRepo(
     repository,
     page,
-    Constants.JOBS_PER_PAGE,
+    perPage,
     sort.split('_')[0],
     sort.split('_')[1],
   );

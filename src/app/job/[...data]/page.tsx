@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { api } from '@/data/api';
 import { Job } from '@/data/types/job';
+import { Constants } from '@/utils/constants';
 import { getCategoryName } from '@/utils/styles';
 
 async function getJob(owner: string, repo: string, id: string) {
@@ -28,6 +29,21 @@ async function getJob(owner: string, repo: string, id: string) {
   return job;
 }
 
+async function getRelatedJobs(owner: string, repo: string) {
+  const response = await api(
+    `/jobs/${owner}/${repo}?per_page=${Constants.RELATED_JOBS}`,
+    {
+      next: {
+        revalidate: 60 * 60 * 5, // 5 hours
+      },
+    },
+  );
+
+  const relatedJobs = await response.json();
+
+  return relatedJobs.jobs;
+}
+
 export default async function JobPage({
   params,
 }: {
@@ -35,6 +51,7 @@ export default async function JobPage({
 }) {
   const [owner, repo, id] = params.data;
   const job: Job = await getJob(owner, repo, id);
+  const relatedJobs: Job[] = await getRelatedJobs(owner, repo);
 
   const repoFullName = job.repo.owner + '/' + job.repo.name;
   const formattedDate = formatDate(job.createdAt, 'dd/MM/yyyy', {
@@ -120,7 +137,11 @@ export default async function JobPage({
       </div>
 
       <h2 className="mt-6 text-lg font-semibold">Vagas similares:</h2>
-      <JobCarousel />
+      <JobCarousel
+        items={relatedJobs.filter(
+          (relatedJob) => relatedJob.issueNumber !== job.issueNumber,
+        )}
+      />
     </div>
   );
 }

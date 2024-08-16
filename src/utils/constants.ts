@@ -3,6 +3,7 @@ import { Repository } from '@/data/types/github';
 export enum Constants {
   LABEL_LIMIT = 5,
   JOBS_PER_PAGE = 12,
+  RELATED_JOBS = 6,
   DEFAULT_SORT = 'created_desc',
 }
 
