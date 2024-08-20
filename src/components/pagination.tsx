@@ -22,6 +22,8 @@ export function Pagination({ totalPages }: PaginationProps) {
     return `${pathname}?${params.toString()}`;
   };
 
+  const lastPage = totalPages === 1 ? currentPage : totalPages;
+
   return (
     <div className="mt-8 flex flex-row items-center justify-between lg:justify-center">
       <Button
@@ -33,12 +35,12 @@ export function Pagination({ totalPages }: PaginationProps) {
       >
         <ChevronLeft />
       </Button>
-      <span className="px-8 py-2 text-sm">{`Página ${currentPage} de ${totalPages}`}</span>
+      <span className="px-8 py-2 text-sm">{`Página ${currentPage} de ${lastPage}`}</span>
       <Button
         className="text-primary"
         variant={'outline'}
         size={'icon'}
-        disabled={currentPage === totalPages}
+        disabled={currentPage === lastPage}
         onClick={() => push(createPageURL(currentPage + 1))}
       >
         <ChevronRight />
