@@ -1,6 +1,8 @@
 import Image from 'next/image';
 
 import { JobBreadcrumb } from '@/components/job-breadcrumb';
+import { Badge } from '@/components/ui/badge';
+import { REPOSITORIES } from '@/utils/constants';
 
 export default function About() {
   return (
@@ -21,8 +23,8 @@ export default function About() {
           É um site que realiza uma coleção de vagas de emprego para
           desenvolvedores de software reunidas de diferentes repositórios
           abastecidos pela comunidade brasileira. O objetivo é facilitar a busca
-          por vagas de emprego que estão espalhadas em diferentes repositórios
-          do GitHub.
+          por vagas de emprego que estão espalhadas em repositórios do GitHub
+          variados.
         </p>
 
         <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold leading-6">
@@ -42,7 +44,19 @@ export default function About() {
         <p className="text-sm text-muted-foreground">
           Para criar uma vaga de emprego, basta acessar o repositório do GitHub
           que deseja adicionar a vaga e seguir as instruções do arquivo
-          README.md.
+          README.md. <br /> Inclusive todos os créditos e agradecimentos aos
+          mantenedores destes repositórios que disponibilizam as vagas:
+          <div className="mt-2 flex flex-row flex-wrap gap-x-1 gap-y-1 sm:gap-x-2">
+            {REPOSITORIES.map((repo) => (
+              <Badge
+                key={repo.owner + repo.name}
+                variant="outline"
+                className="px-1.5 py-0.5 text-muted-foreground sm:px-2.5 sm:py-1"
+              >
+                @{repo.owner}/{repo.name}
+              </Badge>
+            ))}
+          </div>
         </p>
 
         <h2 className="flex flex-row items-center gap-2 pt-6 text-xl font-semibold leading-6">
