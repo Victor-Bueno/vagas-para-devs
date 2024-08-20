@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { JobBreadcrumb } from '@/components/job-breadcrumb';
@@ -5,6 +6,20 @@ import { RepoCategoryCard } from '@/components/repo-category-listing/repo-catego
 import { Category } from '@/data/types/job';
 import { REPOSITORIES } from '@/utils/constants';
 import { getCategoryName } from '@/utils/styles';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { category: string };
+}): Promise<Metadata> {
+  const categoryName = getCategoryName(params.category as Category);
+
+  return {
+    title: 'Vagas ' + categoryName,
+    description:
+      'Encontre vagas de emprego para Desenvolvedores ' + categoryName,
+  };
+}
 
 export default function RepoListPage({
   params,

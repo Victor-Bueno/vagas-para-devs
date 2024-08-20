@@ -17,7 +17,10 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'VagasParaDevs | Encontre vagas',
+  title: {
+    template: 'VagasParaDevs | %s',
+    default: 'VagasParaDevs | Encontre vagas',
+  },
   description: 'Encontre vagas de emprego para desenvolvedores de software',
 };
 

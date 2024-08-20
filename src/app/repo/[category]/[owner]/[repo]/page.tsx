@@ -1,7 +1,19 @@
+import { Metadata } from 'next';
+
 import { JobListing } from '@/components/job-listing';
 import { api } from '@/data/api';
 import { Job } from '@/data/types/job';
 import { Constants } from '@/utils/constants';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { category: string; owner: string; repo: string };
+}): Promise<Metadata> {
+  return {
+    title: `Vagas ${params.owner}/${params.repo}`,
+  };
+}
 
 async function getJobs(
   owner: string,

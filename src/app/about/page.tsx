@@ -1,8 +1,15 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 
 import { JobBreadcrumb } from '@/components/job-breadcrumb';
 import { Badge } from '@/components/ui/badge';
 import { REPOSITORIES } from '@/utils/constants';
+
+export const metadata: Metadata = {
+  title: 'Sobre o projeto',
+  description:
+    'Entenda sobre o projeto que te ajuda a encontrar vagas de emprego para desenvolvedores de software',
+};
 
 export default function About() {
   return (
