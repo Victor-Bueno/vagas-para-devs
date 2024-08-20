@@ -5,7 +5,7 @@ import { JobBreadcrumb } from '@/components/job-breadcrumb';
 export default function About() {
   return (
     <div className="grid grid-cols-4 gap-16 pt-8 sm:pt-16">
-      <main className="col-span-4 space-y-2 sm:col-span-3">
+      <div className="col-span-4 space-y-2 sm:col-span-3">
         <JobBreadcrumb currentPage={'Sobre'} />
         <h1 className="text-2xl font-semibold sm:text-4xl">Sobre o projeto</h1>
         <p className="text-sm text-muted-foreground">
@@ -70,7 +70,7 @@ export default function About() {
           com o objetivo de aplicar novos conhecimentos e, de alguma forma,
           tentar ajudar a comunidade brasileira.
         </p>
-      </main>
+      </div>
       <Image
         src="/about_image.jpg"
         className="col-span-1 hidden h-full object-cover sm:block"
