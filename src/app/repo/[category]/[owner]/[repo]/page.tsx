@@ -43,7 +43,7 @@ export default async function RepoJobsPage({
   );
 
   return (
-    <div>
+    <div className="pt-8 sm:pt-16">
       <JobListing jobs={jobs} totalPages={lastPage} />
     </div>
   );
