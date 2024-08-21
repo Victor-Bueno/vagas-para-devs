@@ -12,7 +12,7 @@ VagasParaDevs é um projeto que tem como objetivo conectar desenvolvedores brasi
 
 Você pode conferir o projeto no seguinte link: [VagasParaDevs](https://vagas-para-devs.vercel.app/)
 
-## Table of Contents
+## Tópicos do Conteúdo
 - [Description EN-US](#description-en-us)
 - [Descrição](#descrição)
 - [Instalação](#instalação)
