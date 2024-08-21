@@ -1,11 +1,13 @@
-# VagasParaDevs
+# VagasParaDevs 🎯🖥️
 
 ## Description EN-US
 VagasParaDevs is a project aimed at connecting brazilians developers with job opportunities. It provides a platform where developers can apply for positions that match their skills, where all the job opportunities are collected from other GitHub repositories and displayed in a single place.
 The rest of the content of this file is in portuguese, as the project is aimed at brazilian developers.
+You can check out the project in the following link: [VagasParaDevs](https://vagas-para-devs.vercel.app/)
 
 ## Descrição
 VagasParaDevs é um projeto que tem como objetivo conectar desenvolvedores brasileiros com oportunidades de emprego. Ele fornece uma plataforma onde os desenvolvedores podem se candidatar a vagas que correspondam às suas habilidades, onde todas as oportunidades de emprego são coletadas de outros repositórios do GitHub e exibidas em um único lugar.
+Você pode conferir o projeto no seguinte link: [VagasParaDevs](https://vagas-para-devs.vercel.app/)
 
 ## Table of Contents
 - [Description EN-US](#description-en-us)
