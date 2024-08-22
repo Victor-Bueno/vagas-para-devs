@@ -35,7 +35,12 @@ export function SortJobsSelect() {
       <SelectTrigger className="w-full sm:w-48">
         <SelectValue placeholder="Ordenar" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent
+        ref={(ref) => {
+          if (!ref) return;
+          ref.ontouchstart = (e) => e.preventDefault();
+        }}
+      >
         <SelectGroup>
           <SelectLabel>Ordenar por</SelectLabel>
           <SelectItem value="created_desc">Mais recente</SelectItem>
