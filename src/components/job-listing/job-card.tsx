@@ -38,8 +38,8 @@ export function JobCard(props: JobCardProps) {
         <CardHeader className="flex flex-row flex-wrap items-start justify-between pb-3 sm:flex-nowrap sm:pb-6">
           <div
             className={cn(
-              'flex flex-col gap-2 sm:flex-row sm:gap-5',
-              labelsSize > 0 ? 'items-start' : 'items-center',
+              'flex flex-col items-start gap-2 sm:flex-row sm:gap-5',
+              labelsSize > 0 ? '' : 'sm:items-center',
             )}
           >
             <CategoryIcon
