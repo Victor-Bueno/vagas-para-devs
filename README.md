@@ -1,5 +1,11 @@
 # VagasParaDevs 🎯🖥️
 
+<p align="center">
+      <img src="/readme_images/multiple_mockup.png" alt="Mockup of Multiples Screens" width="80%">
+      <img src="/readme_images/home_mockup.png" alt="Mockup of Home Screen" width="40%">
+      <img src="/readme_images/details_mockup.png" alt="Mockup of Details Screen" width="40%">
+</p>
+
 ## Description EN-US
 VagasParaDevs is a project aimed at connecting brazilians developers with job opportunities. It provides a platform where developers can apply for positions that match their skills, where all the job opportunities are collected from other GitHub repositories and displayed in a single place.
 
